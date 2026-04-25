@@ -108,6 +108,10 @@ body.edit-enabled .feature-btn {
 }
 
 .edit-toggle-btn {
+    display: none !important;
+}
+
+.edit-toggle-btn {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
@@ -243,6 +247,13 @@ nav ul li a:hover {
     margin-right: auto;
 }
 
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
 .cta-button {
     display: inline-block;
     padding: 1rem 2rem;
@@ -253,6 +264,10 @@ nav ul li a:hover {
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(16,185,129,0.3);
+}
+
+.cta-secondary {
+    background: #111827;
 }
 
 .cta-button:hover {
@@ -295,6 +310,14 @@ nav ul li a:hover {
     margin-bottom: 0.5rem;
     font-size: 1rem;
     line-height: 1.6;
+}
+
+.achievement-caption {
+    display: inline-block;
+    margin-left: 0.5rem;
+    color: #374151;
+    font-size: 0.95rem;
+    font-style: italic;
 }
 
 .info-link {

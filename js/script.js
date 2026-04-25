@@ -17,6 +17,17 @@ function saveContentToStorage() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
 }
 
+function normalizeCollegeLink() {
+    const collegeLink = Array.from(document.querySelectorAll('#education-info a')).find(link =>
+        link.textContent.trim().includes('Biliran Province State University')
+    );
+    if (collegeLink) {
+        collegeLink.href = 'https://bipsu.edu.ph/index.php/about-us/the-university';
+        collegeLink.target = '_blank';
+        collegeLink.rel = 'noopener noreferrer';
+    }
+}
+
 function loadContentFromStorage() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return;
@@ -26,6 +37,8 @@ function loadContentFromStorage() {
         if (saved.personalInfoHTML) document.getElementById('personal-info').innerHTML = saved.personalInfoHTML;
         if (saved.educationInfoHTML) document.getElementById('education-info').innerHTML = saved.educationInfoHTML;
         if (saved.achievementsHTML) document.getElementById('achievements-list').innerHTML = saved.achievementsHTML;
+        normalizeCollegeLink();
+        saveContentToStorage();
     } catch (error) {
         console.error('Unable to load saved content:', error);
     }
@@ -237,6 +250,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggleEditVisibilityButton = document.getElementById('toggle-edit-visibility');
     toggleEditVisibilityButton?.addEventListener('click', function () {
         setEditEnabled(!isEditEnabled);
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'e') {
+            event.preventDefault();
+            setEditEnabled(!isEditEnabled);
+        }
     });
 
     const addEducationBtn = document.getElementById('add-education-btn');
